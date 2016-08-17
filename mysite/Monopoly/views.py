@@ -7,12 +7,14 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 from django.http import HttpResponse
 import MyForms
-def index(request):
-    return HttpResponse(u"恭喜发财！")
+def index(req):
+    return render(req, "404.html")
 
+
+def SayHello(req):
+    return render(req, "hello.html")
 
 def WriteCookies(req):
-    template = loader.get_template("WriteCookie.html")
     if req.method == "POST":
         form = MyForms.WriteCookieForm(req.POST)
         if form.is_valid():

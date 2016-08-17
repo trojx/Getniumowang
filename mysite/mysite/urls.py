@@ -20,6 +20,7 @@ from Monopoly import views as Monopoly_views
 urlpatterns = [
     url(r'^admin/$', include(admin.site.urls)),
     url(r"^$",Monopoly_views.index),
-     url(r'^cookie', Monopoly_views.WriteCookies)
+     url(r'^cookie', Monopoly_views.WriteCookies),
+     url(r'^hello', Monopoly_views.SayHello)
     
 ]
