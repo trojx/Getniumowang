@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>实时观点</title>
+
+    <link rel="stylesheet" href="static/chat_style.css" media="screen" type="text/css" />
+
+</head>
+
+<body>
+<script src='static/jquery.js'></script>
+
+<script>
+$.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
+setInterval("updateMsg()", 3000);//每秒更新一次              
+//更新消息 
+pid = 0;
+function updateMsg() {
+
+if(typeof($(".chattxt").last().attr("pid"))=="undefined")
+{
+pid = 0;
+}
+else{
+pid = $(".chattxt").last().attr("pid");
+}
+url = "/getChatList/" +  pid;//
+
+    $.get(
+    	url, 
+		function(data) {  
+        	$('.chat-thread').append(data);    //解析返回的 xml  
+    });  
+     
+}  
+</script>
+<ul class="chat-thread">
+<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>
+	
+</ul>
+
+
+
+
+</body>
+
+</html>

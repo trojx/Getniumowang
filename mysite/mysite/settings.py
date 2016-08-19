@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
-FILE_CHARSET='gb18030' 
+FILE_CHARSET='utf-8'#'gb18030' 
 DEFAULT_CHARSET='utf-8' 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -89,7 +89,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-CN'
 
 TIME_ZONE = 'UTC'
 

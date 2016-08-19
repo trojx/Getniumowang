@@ -7,10 +7,15 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 from django.http import HttpResponse
 import MyForms
+
 def index(req):
     return render(req, "404.html")
 
 
+def Chat(req):
+    return render(req, "chat.html")
+def GetChatList(req):
+    return HttpResponse(r'<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>')
 def SayHello(req):
     return render(req, "hello.html")
 
