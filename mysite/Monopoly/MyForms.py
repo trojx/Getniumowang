@@ -7,7 +7,7 @@ class WriteCookieForm(forms.Form):
     def execute(self):
         try:
             s = self.cleaned_data["cookies"]
-            objfile = open("./houtai/cookie.txt", "w")
+            objfile = open("./houtai/cookie.txt", "wr")
             objfile.write(s)
             objfile.close()
             return "ok"

@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7&l#(iqes%46bacd4cr_84)^u&-)-_t7bxwy5!&i%knu^(_sfy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'monopoly',    #你的数据库名称
         'USER': 'root',   #你的数据库用户名
-        'PASSWORD': 'mimasi520', #你的数据库密码
+        'PASSWORD': 'm0', #你的数据库密码
         'HOST': '127.0.0.1', #你的数据库主机，留空默认为localhost
         'PORT': '3306', #你的数据库端口
     }
