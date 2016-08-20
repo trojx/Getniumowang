@@ -35,9 +35,9 @@ def GetChatList(req):
     ret = ""
     for qset in all:
         chattxt = qset.chattxt
-        if chattxt == u"":
-             continue
-        if qset.sharesname != u"":
+        if chattxt == None or chattxt == u"":
+            continue
+        if qset.sharesname != None and qset.sharesname != u"":
             redname = u"<font color=red>" + qset.sharesname + u"</font>"
             chattxt = chattxt.replace(qset.sharesname,redname)
         ret += u"<li pid=" + str(qset.id) + u" class='chattxt'><span>"
