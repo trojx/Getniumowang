@@ -34,12 +34,16 @@ def GetChatList(req):
     #print list(a[0].chattxt)
     ret = ""
     for qset in all:
-        if qset.chattxt == u"":
-            continue
+        chattxt = qset.chattxt
+        if chattxt == u"":
+             continue
+        if qset.sharesname != u"":
+            redname = u"<font color=red>" + qset.sharesname + u"</font>"
+            chattxt = chattxt.replace(qset.sharesname,redname)
         ret += u"<li pid=" + str(qset.id) + u" class='chattxt'><span>"
         format_birth = qset.time.strftime("%m-%d %H:%M:%S") 
         ret += format_birth + u"</span>"
-        ret += qset.chattxt + u"</li>"
+        ret += chattxt + u"</li>"
         
     return HttpResponse(ret)# r'<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>')
 def SayHello(req):
