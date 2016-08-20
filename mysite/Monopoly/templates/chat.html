@@ -19,7 +19,7 @@ $.ajaxSetup({
     data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
 
-setInterval("updateMsg()", 3000);//每秒更新一次              
+setInterval("updateMsg()", 6000);//每秒更新一次              
 //更新消息 
 pid = 0;
 function updateMsg() {
@@ -31,7 +31,7 @@ pid = 0;
 else{
 pid = $(".chattxt").last().attr("pid");
 }
-url = "/getChatList/" +  pid;//
+url = "/getChatList/?pid=" +  pid;//
 
     $.get(
     	url, 
@@ -42,7 +42,8 @@ url = "/getChatList/" +  pid;//
 }  
 </script>
 <ul class="chat-thread">
-<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>
+
+
 	
 </ul>
 

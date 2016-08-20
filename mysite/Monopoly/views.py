@@ -1,12 +1,13 @@
-#coding:utf-8
+#coding:utf8
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 # Create your views here.
+from django.utils.timezone import now, timedelta
 
-
+import datetime
 from django.http import HttpResponse
-import MyForms
+import MyForms,models
 
 def index(req):
     return render(req, "404.html")
@@ -15,7 +16,32 @@ def index(req):
 def Chat(req):
     return render(req, "chat.html")
 def GetChatList(req):
-    return HttpResponse(r'<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>')
+    '''
+    date = datetime.date.today()
+    date=datetime.datetime.strptime(str(date),'%Y-%m-%d')
+    #date = now().date() + timedelta(days=0) #今天
+    a=models.chatcontent.objects .filter(time__gte=date)[0]['chattxt']
+    '''
+    #now = datetime.datetime.now()
+    #前一天
+    #start = now-datetime.timedelta(hours=23, minutes=59, seconds=59)
+    
+    lastID = int(req.GET["pid"])
+    kwargs = {}
+    kwargs["time__gte"] = datetime.date.today()
+    kwargs["id__gt"] = lastID
+    all = models.chatcontent.objects.filter(**kwargs)
+    #print list(a[0].chattxt)
+    ret = ""
+    for qset in all:
+        if qset.chattxt == u"":
+            continue
+        ret += u"<li pid=" + str(qset.id) + u" class='chattxt'><span>"
+        format_birth = qset.time.strftime("%m-%d %H:%M:%S") 
+        ret += format_birth + u"</span>"
+        ret += qset.chattxt + u"</li>"
+        
+    return HttpResponse(ret)# r'<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>')
 def SayHello(req):
     return render(req, "hello.html")
 

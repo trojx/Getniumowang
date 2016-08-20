@@ -1,3 +1,4 @@
+#coding:utf8
 """
 Django settings for mysite project.
 
@@ -77,14 +78,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'monopoly',    #你的数据库名称
+        'USER': 'root',   #你的数据库用户名
+        'PASSWORD': 'mimasi520', #你的数据库密码
+        'HOST': '127.0.0.1', #你的数据库主机，留空默认为localhost
+        'PORT': '3306', #你的数据库端口
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -97,7 +108,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

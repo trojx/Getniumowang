@@ -23,6 +23,6 @@ urlpatterns = [
      url(r'^cookie', Monopoly_views.WriteCookies),
      url(r'^hello', Monopoly_views.SayHello),
      url(r'^chat', Monopoly_views.Chat),
-     url(r'^getChatList/\d+', Monopoly_views.GetChatList)
+     url(r'^getChatList/$', Monopoly_views.GetChatList)
     
 ]
