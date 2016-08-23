@@ -23,7 +23,7 @@ setInterval("updateMsg()", 6000);//每秒更新一次
 //更新消息 
 pid = 0;
 function updateMsg() {
-
+//h = $('.chat-thread'); 
 if(typeof($(".chattxt").last().attr("pid"))=="undefined")
 {
 pid = 0;
@@ -37,8 +37,11 @@ url = "/getChatList/?pid=" +  pid;//
     	url, 
 		function(data) {  
         	$('.chat-thread').append(data);    //解析返回的 xml  
-    });  
-     
+    }); 
+//h = $('.chat-thread').scrollHeight; 
+// $('.chat-thread').scrollTop =  600;
+// $('.chat-thread').scrollTop( $('.chat-thread')[0].scrollHeight ); 
+//$('.chat-thread').scrollTop =  $('.chat-thread').scrollHeight;
 }  
 </script>
 <ul class="chat-thread">

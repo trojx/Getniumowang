@@ -145,7 +145,7 @@ ul>li>span  {
 @media all and (min-width: 1000px) {
   .chat-thread {
     width: 60%;
-    height: 60%;
+    height: 600px;
   }
 
   .chat-window {
