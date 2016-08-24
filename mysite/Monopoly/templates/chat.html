@@ -20,6 +20,9 @@ $.ajaxSetup({
 });
 updateMsg();
 setInterval("updateMsg()", 6000);//每秒更新一次              
+/*$(function(){
+$('.chat-thread').scrollTop =  $('.chat-thread').scrollHeight;
+});*/
 //更新消息 
 pid = 0;
 function updateMsg() {
@@ -47,6 +50,7 @@ url = "/getChatList/?pid=" +  pid;//
 <ul class="chat-thread">
 
 
+/$('.chat-thread').scrollTop =  $('.chat-thread').scrollHeight;
 	
 </ul>
 
