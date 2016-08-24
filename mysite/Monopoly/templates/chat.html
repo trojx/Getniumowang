@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 
 <head>
@@ -16,47 +16,43 @@
 
 <script>
 $.ajaxSetup({
-    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    data: {
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+    },
 });
 updateMsg();
-setInterval("updateMsg()", 6000);//每秒更新一次              
-/*$(function(){
-$('.chat-thread').scrollTop =  $('.chat-thread').scrollHeight;
-});*/
+setInterval("updateMsg()", 6000); //每秒更新一次              
 //更新消息 
 pid = 0;
 function updateMsg() {
-//h = $('.chat-thread'); 
-if(typeof($(".chattxt").last().attr("pid"))=="undefined")
-{
-pid = 0;
-}
-else{
-pid = $(".chattxt").last().attr("pid");
-}
-url = "/getChatList/?pid=" +  pid;//
 
-    $.get(
-    	url, 
-		function(data) {  
-        	$('.chat-thread').append(data);    //解析返回的 xml  
-    }); 
-//h = $('.chat-thread').scrollHeight; 
-// $('.chat-thread').scrollTop =  600;
-// $('.chat-thread').scrollTop( $('.chat-thread')[0].scrollHeight ); 
-//$('.chat-thread').scrollTop =  $('.chat-thread').scrollHeight;
-}  
+    if (typeof($(".chattxt").last().attr("pid")) == "undefined") {
+        pid = 0;
+    } else {
+        pid = $(".chattxt").last().attr("pid");
+    }
+    url = "/getChatList/?pid=" + pid; //
+    $.get(url,
+    function(data) {
+        $('.chat-thread').append(data); //解析返回的 xml  
+    });
+    
+}
+
+$(function(){
+$('.chat-thread')[0].scrollTop = $('.chat-thread')[0].scrollHeight;
+});
+
 </script>
+
+
 <ul class="chat-thread">
 
 
-/$('.chat-thread').scrollTop =  $('.chat-thread').scrollHeight;
-	
+
 </ul>
-
-
-
 
 </body>
 
 </html>
+
