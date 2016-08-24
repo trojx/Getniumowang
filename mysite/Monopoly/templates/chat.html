@@ -15,17 +15,17 @@
 <script src='static/jquery.js'></script>
 
 <script>
-$.ajaxSetup({
+$.ajaxSetup({//async:false,
     data: {
         csrfmiddlewaretoken: '{{ csrf_token }}'
     },
 });
 updateMsg();
+
 setInterval("updateMsg()", 6000); //每秒更新一次              
 //更新消息 
 pid = 0;
 function updateMsg() {
-
     if (typeof($(".chattxt").last().attr("pid")) == "undefined") {
         pid = 0;
     } else {
@@ -34,15 +34,15 @@ function updateMsg() {
     url = "/getChatList/?pid=" + pid; //
     $.get(url,
     function(data) {
-        $('.chat-thread').append(data); //解析返回的 xml  
+        $('.chat-thread').append(data); //解析返回的 xml
+        if (data != ""){
+        setTimeout(function(){
+            $('.chat-thread')[0].scrollTop = $('.chat-thread')[0].scrollHeight;
+            }, 300);
+            }
     });
     
 }
-
-$(function(){
-$('.chat-thread')[0].scrollTop = $('.chat-thread')[0].scrollHeight;
-});
-
 </script>
 
 

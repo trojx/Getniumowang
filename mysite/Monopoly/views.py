@@ -25,26 +25,29 @@ def GetChatList(req):
     #now = datetime.datetime.now()
     #前一天
     #start = now-datetime.timedelta(hours=23, minutes=59, seconds=59)
-    
-    lastID = int(req.GET["pid"])
-    kwargs = {}
-    kwargs["time__gte"] = datetime.date.today()
-    kwargs["id__gt"] = lastID
-    all = models.chatcontent.objects.filter(**kwargs)
-    #print list(a[0].chattxt)
-    ret = ""
-    for qset in all:
-        chattxt = qset.chattxt
-        if chattxt == None or chattxt == u"":
-            continue
-        if qset.sharesname != None and qset.sharesname != u"":
-            redname = u"<font color=red>" + qset.sharesname + u"</font>"
-            chattxt = chattxt.replace(qset.sharesname,redname)
-        ret += u"<li pid=" + str(qset.id) + u" class='chattxt'><span>"
-        format_birth = qset.time.strftime("%m-%d %H:%M:%S") 
-        ret += format_birth + u"</span>"
-        ret += chattxt + u"</li>"
-        
+    try:
+        lastID = int(req.GET["pid"])
+        kwargs = {}
+        #kwargs["time__gte"] = datetime.date.today()
+        kwargs["id__gt"] = lastID
+        all = models.chatcontent.objects.filter(**kwargs)
+        #print list(a[0].chattxt)
+        ret = ""
+        for qset in all:
+            chattxt = qset.chattxt
+            if chattxt == None or chattxt == u"":
+                continue
+            if qset.sharesname != None and qset.sharesname != u"":
+                redname = u"<font color=red>" + qset.sharesname + u"</font>"
+                chattxt = chattxt.replace(qset.sharesname,redname)
+            ret += u"<li pid=" + str(qset.id) + u" class='chattxt'><span>"
+            format_birth = u""
+            if qset.time != None:
+                format_birth = qset.time.strftime("%m-%d %H:%M:%S") 
+            ret += format_birth + u"</span>"
+            ret += chattxt + u"</li>"
+    except Exception,e:
+            return HttpResponse(str(e))
     return HttpResponse(ret)# r'<li pid=123 class="chattxt"><span>今天21:43</span>Are <font color="red"><b>we</b></font> meeting today?</li>')
 def SayHello(req):
     return render(req, "hello.html")
