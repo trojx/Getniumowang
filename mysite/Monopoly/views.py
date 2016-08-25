@@ -10,9 +10,25 @@ from django.http import HttpResponse
 import MyForms,models
 
 def index(req):
-    return render(req, "404.html")
+    return render(req,"404.html")
 
-
+def showshares(req):
+    #<th>名称</th><th>代码</th><th>购买价格</th><th>购买股数</th><th>购买时间</th> 
+    data = []
+    try:
+        all = models.buyshares.objects.all()[:500]
+        
+        for qset in all:
+            col = {} 
+            col["name"] = qset.sharesname
+            col["code"] = qset.sharescode
+            col["buyprice"] = qset.buyprice
+            col["num"] = qset.numofshares
+            col["buytime"] = qset.buytime
+            data.append(col)
+    except Exception,e:
+        pass  
+    return render(req,"showshares.html",{"data":data})#,{"data":data})#,locals())#context_instance=RequestContext(req))
 def Chat(req):
     return render(req, "chat.html")
 def GetChatList(req):
