@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//Monopoly/MyForms.py=utf8
+encoding//Monopoly/admin.py=utf8
+encoding//Monopoly/models.py=utf8
 encoding//Monopoly/views.py=utf8
 encoding//mysite/settings.py=utf8
