@@ -28,7 +28,7 @@ def GetChatList(req):
     try:
         lastID = int(req.GET["pid"])
         kwargs = {}
-        #kwargs["time__gte"] = datetime.date.today()
+        kwargs["time__gte"] = datetime.date.today()
         kwargs["id__gt"] = lastID
         all = models.chatcontent.objects.filter(**kwargs)
         #print list(a[0].chattxt)
