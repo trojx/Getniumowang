@@ -18,12 +18,13 @@ from django.contrib import admin
 
 from Monopoly import views as Monopoly_views
 urlpatterns = [
-    url(r'^admin/$', include(admin.site.urls)),
+    url(r'^ad/', include(admin.site.urls)),
     url(r"^$",Monopoly_views.index),
      url(r'^cookie', Monopoly_views.WriteCookies),
      url(r'^hello', Monopoly_views.SayHello),
      url(r'^chat', Monopoly_views.Chat),
-     url(r'^getChatList/$', Monopoly_views.GetChatList)
+     url(r'^getChatList/$', Monopoly_views.GetChatList),
+     url(r'^showshares', Monopoly_views.showshares)
     
 ]
 #from django.conf import settings 
